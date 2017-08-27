@@ -369,9 +369,7 @@ static bool serial8250_in(struct ioport *ioport, struct kvm_cpu *vcpu, u16 port,
 #define DEVICE_NAME_MAX_LEN 32
 static
 void serial8250_generate_fdt_node(struct ioport *ioport, void *fdt,
-				  void (*generate_irq_prop)(void *fdt,
-							    u8 irq,
-							    enum irq_type))
+				  fdt_gen_irq generate_irq_prop)
 {
 	char dev_name[DEVICE_NAME_MAX_LEN];
 	struct serial8250_device *dev = ioport->priv;

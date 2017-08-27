@@ -35,4 +35,5 @@ enum irq_type {
 		}							\
 	} while (0)
 
+typedef void (*fdt_gen_irq)(void *fdt, u8 irq, enum irq_type irq_type);
 #endif /* KVM__FDT_H */

@@ -233,9 +233,7 @@ static void virtio_mmio_mmio_callback(struct kvm_cpu *vcpu,
 static
 void generate_virtio_mmio_fdt_node(void *fdt,
 				   struct device_header *dev_hdr,
-				   void (*generate_irq_prop)(void *fdt,
-							     u8 irq,
-							     enum irq_type))
+				   fdt_gen_irq generate_irq_prop)
 {
 	char dev_name[DEVICE_NAME_MAX_LEN];
 	struct virtio_mmio *vmmio = container_of(dev_hdr,
@@ -259,8 +257,7 @@ void generate_virtio_mmio_fdt_node(void *fdt,
 #else
 static void generate_virtio_mmio_fdt_node(void *fdt,
 					  struct device_header *dev_hdr,
-					  void (*generate_irq_prop)(void *fdt,
-								    u8 irq))
+					  fdt_gen_irq generate_irq_prop)
 {
 	die("Unable to generate device tree nodes without libfdt\n");
 }
