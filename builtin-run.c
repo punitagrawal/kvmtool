@@ -116,8 +116,8 @@ void kvm_run_set_wrapper_sandbox(void)
 	OPT_CALLBACK('\0', "9p", NULL, "dir_to_share,tag_name",		\
 		     "Enable virtio 9p to share files between host and"	\
 		     " guest", virtio_9p_rootdir_parser, kvm),		\
-	OPT_STRING('\0', "console", &(cfg)->console, "serial, virtio or"\
-			" hv", "Console to use"),			\
+	OPT_STRING('\0', "console", &(cfg)->console, "serial, virtio, " \
+			"hv or pl011", "Console to use"),		\
 	OPT_STRING('\0', "dev", &(cfg)->dev, "device_file",		\
 			"KVM device file"),				\
 	OPT_CALLBACK('\0', "tty", NULL, "tty id",			\
@@ -542,6 +542,8 @@ static struct kvm *kvm_cmd_run_init(int argc, const char **argv)
 		kvm->cfg.active_console  = CONSOLE_8250;
 	else if (!strncmp(kvm->cfg.console, "hv", 2))
 		kvm->cfg.active_console = CONSOLE_HV;
+	else if (!strncmp(kvm->cfg.console, "pl011", 5))
+		kvm->cfg.active_console = CONSOLE_PL011;
 	else
 		pr_warning("No console!");
 

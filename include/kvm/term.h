@@ -9,6 +9,7 @@
 #define CONSOLE_8250	1
 #define CONSOLE_VIRTIO	2
 #define CONSOLE_HV	3
+#define CONSOLE_PL011	4
 
 #define TERM_MAX_DEVS	4
 
